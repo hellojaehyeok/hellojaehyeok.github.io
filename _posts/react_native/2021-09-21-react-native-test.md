@@ -1,7 +1,7 @@
 ---
 layout: single
 title:  "React Native Test Nav"
-excerpt : "테스트 글입니다. -v2"
+excerpt : "테스트 글입니다. -v3"
 
 categories:
   - React Native
