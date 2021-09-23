@@ -40,8 +40,8 @@ img 를 넣을 시 사용한다.
 ```
 
 ### TouchableOpacity
-버튼을 만들 때 주로 사용한다.
-터치 시 opacity의 변화를 주며 이벤트가 실행된다.
+버튼을 만들 때 주로 사용한다.      
+터치 시 opacity의 변화를 주며 이벤트가 실행된다.      
 
 ```javascript
   <TouchableOpacity
@@ -51,15 +51,16 @@ img 를 넣을 시 사용한다.
 ```
 
 ### ScrollView
-RN에서는 컨텐츠의 양이 많다고 해서 자동적으로 스크롤이 생기는 게 
-아니기 때문에 ScrollView를 사용하여 스크롤이 가능하도록 만들어 주어야 한다.
+RN에서는 컨텐츠의 양이 많다고 해서 자동적으로 스크롤이 생기는 게       
+아니기 때문에 ScrollView를 사용하여 스크롤이 가능하도록 만들어 주어야 한다.      
 
 ### TextInput
 input 같은 역할을 한다.
-onChange를 사용하여 이벤트를 주어도 괜찮지만 onChangeText를 사용하면 더욱 편하게 
-조작 가능하다. e.target.value를 사용하지 않아도 현재의 값을 가져올 수 있다.
-비밀번호를 입력 시 값이 보이지 않아야 하기 때문에
-secureTextEntry={true} 를 사용하여야 한다.
+onChange를 사용하여 이벤트를 주어도 괜찮지만       
+onChangeText를 사용하면 더욱 편하게 조작 가능하다.      
+e.target.value를 사용하지 않아도 현재의 값을 가져올 수 있다.      
+비밀번호를 입력 시 값이 보이지 않아야 하기 때문에      
+secureTextEntry={true} 를 사용하여야 한다.      
 
 ```javascript
   const onChangeName = (e) => {

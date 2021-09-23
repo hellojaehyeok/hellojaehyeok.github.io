@@ -164,6 +164,11 @@
   border-top: 1px solid $border-color;
 }
 
+#totalPost{
+  font-size: 0.6em !important;
+  cursor: default;
+}
+
 .pagination_prev_next {
   @include clearfix();
   float: left;
