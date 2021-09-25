@@ -9,9 +9,9 @@ tags:
   - [React Native, Realm, Database]
 
 date: 2021-09-23
-last_modified_at: 2021-09-23
+last_modified_at: 2021-09-25
 ---
-
+  
 
 
 # Realm
@@ -27,9 +27,32 @@ Realm은 쉽게 생각하여 모바일 데이터베이스라고 생각하시면 
 
 ## 기본 함수
 
-Realm.open 선언한 스키마에 접근합니다.
+* `Realm.open()` 선언한 스키마에 접근합니다.
 ```javascript
     var realm = await Realm.open({ --- });
+```
+
+
+* `realm.objects()` 스키마에서 만든 객체에 접근합니다.
+```javascript
+    var filter = await realm.objects( --- );
+```
+
+* `realm.write()` 이 함수 안에서 데이터를 편집합니다. 
+```javascript
+    realm.write(() => {}));
+```
+
+* `realm.create()` 새로운 데이터를 추가할 때 사용합니다. 
+```javascript
+    realm.create('----', {
+        --- : ---
+    });
+```
+
+* `realm.deleteAll()` 저장된 모든 데이터를 삭제합니다.
+```javascript
+    realm.deleteAll();
 ```
 
 
@@ -159,3 +182,10 @@ join과 split함수를 활용하여 배열로 다시 바꿔 사용하였습니�
 나중에 기회가 된다면 이것도 사용해봐야겠다.
 
 조금 더 자세히 알고싶다면 [여기](https://docs.mongodb.com/realm-legacy/kr/docs/javascript/latest.html)랑 [여기](https://ichi.pro/ko/realm-for-react-native-sijaghagi-212611396888408)를 참고해주세요!
+
+
+```
+    🤔🤔
+    개인적으로 공부한것을 정리하는 블러그입니다.
+    틀린부분이 있으면 알려주시면 감사하겠습니다
+```
