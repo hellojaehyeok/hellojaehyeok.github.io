@@ -12,6 +12,10 @@ summary {
   cursor: pointer;
 }
 
+p a{
+  border-bottom: 1px solid $blue;
+}
+
 /* ==========================================================================
    SINGLE PAGE/POST
    ========================================================================== */
@@ -148,7 +152,8 @@ body {
 
   a:not(.btn) {
     &:hover {
-      text-decoration: underline;
+      // text-decoration: underline;
+      color:$blue;
 
       img {
         box-shadow: 0 0 10px rgba(#000, 0.25);
