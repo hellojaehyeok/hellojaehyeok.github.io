@@ -1,7 +1,6 @@
 ---
 layout: single
-title:  "React Native Realm"
-excerpt : "Datebase인 Realm 활용법"
+title:  "React Native Realm 정리"
 
 categories:
   - React Native 

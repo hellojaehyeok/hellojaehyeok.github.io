@@ -1,6 +1,6 @@
 ---
 layout: single
-title:  "React Native Singleton"
+title:  "React Native Singleton 싱글톤 정리"
 excerpt : "React Native Singleton 정리"
 
 categories:

@@ -1,6 +1,6 @@
 ---
 layout: single
-title:  "React Redux"
+title:  "React Redux 기초 및 사용법"
 excerpt : "React Redux 기초 및 사용법"
 
 categories:

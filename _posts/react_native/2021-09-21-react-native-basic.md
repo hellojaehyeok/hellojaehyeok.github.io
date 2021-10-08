@@ -1,6 +1,6 @@
 ---
 layout: single
-title:  "React Native Basic"
+title:  "React Native 기초정리"
 excerpt : "React Native 기초정리"
 
 categories:
@@ -19,18 +19,18 @@ React Native 기초 정리입니다.
 
 ## Component
 ---
-HTML 태그를 사용하지 못하고 RN은 UI 구현을 위한 기본 컴포넌트를 제공한다.
+HTML 태그를 사용하지 못하고 RN은 UI 구현을 위한 기본 컴포넌트를 제공합니다.
 
 ### View
-div 같은 역할을 한다. (구역을 나눌 때 사용한다.)
+div 태그 같은 역할을 합니다.
 
 ### Text 
-p 같은 역할을 한다. 텍스트를 입력 시 Text 안에 넣어 사용한다.
-Text가 아닌 다른 태그를 이용하여 텍스트를 넣으면 오류가 난다.
+p 태그 같은 역할을 합니다. 텍스트를 입력 시에는 꼭 Text 안에 넣어야합니다..
+Text가 아닌 다른 태그를 이용하여 텍스트를 넣으면 오류가 납니다.
 
 ### Image
-img 를 넣을 시 사용한다.
-경로는 아래 코드와 같이 지정한다.
+img 를 넣을 시 사용합니다.      
+경로는 아래 코드와 같이 지정해줍니다.      
 
 ```javascript
   // 상대경로
@@ -40,8 +40,8 @@ img 를 넣을 시 사용한다.
 ```
 
 ### TouchableOpacity
-버튼을 만들 때 주로 사용한다.      
-터치 시 opacity의 변화를 주며 이벤트가 실행된다.      
+버튼을 만들 때 주로 사용합니다.      
+터치 시 opacity의 변화를 주며 이벤트가 실행됩니다.      
 
 ```javascript
   <TouchableOpacity
@@ -52,15 +52,18 @@ img 를 넣을 시 사용한다.
 
 ### ScrollView
 RN에서는 컨텐츠의 양이 많다고 해서 자동적으로 스크롤이 생기는 게       
-아니기 때문에 ScrollView를 사용하여 스크롤이 가능하도록 만들어 주어야 한다.      
+아니기 때문에 ScrollView를 사용하여 스크롤이 가능하도록 만들어 주어야 합니다.      
 
 ### TextInput
-input 같은 역할을 한다.
+input 같은 역할을 합니다.      
+
 onChange를 사용하여 이벤트를 주어도 괜찮지만       
-onChangeText를 사용하면 더욱 편하게 조작 가능하다.      
-e.target.value를 사용하지 않아도 현재의 값을 가져올 수 있다.      
+onChangeText를 사용하면 더욱 편하게 조작 가능합니다.      
+e.target.value를 사용하지 않아도 현재의 값을 가져올 수 있습니다.     
+
 비밀번호를 입력 시 값이 보이지 않아야 하기 때문에      
-secureTextEntry={true} 를 사용하여야 한다.      
+secureTextEntry={true} 를 사용하여야 합니다.      
+
 
 ```javascript
   const onChangeName = (e) => {
@@ -78,7 +81,7 @@ secureTextEntry={true} 를 사용하여야 한다.
 ```
 
 ### FlatList 
-react에서는 map을 사용하였으면 RN에서는 FlatList를 지향한다.
+react에서는 map을 사용하였으면 RN에서는 FlatList를 지향합니다.
 
 ```javascript
   const listArr = ["A", "B", "C", "D", "E"];
@@ -104,10 +107,10 @@ react에서는 map을 사용하였으면 RN에서는 FlatList를 지향한다.
 
 ## Styling
 ---
-* CSS를 설정할 때 object의 namespace를 이용한다.
-* 각 스타일의 속성의 구분은 ; 가 아닌 , 로 구분한다.
-* 스타일 속성 명의 구분은 -이 아닌 대문자로 구분한다. (font-weight  -> fontWeight)
-* 'px', 'em' 등의 단위는 생략한다. -> rem 을 사용한다
+* CSS를 설정할 때 object의 namespace를 이용힙니다.
+* 각 스타일의 속성의 구분은 ; 가 아닌 , 로 구분합니다.
+* 스타일 속성 명의 구분은 -이 아닌 대문자로 구분합니다. (font-weight  -> fontWeight)
+* 'px', 'em' 등의 단위는 생략한다. -> rem 을 사용합니다
 
 ```javascript
   bigBlue: {
@@ -117,7 +120,7 @@ react에서는 map을 사용하였으면 RN에서는 FlatList를 지향한다.
   }
 ```
 
-* 축약형이 존재하지 않는다. 대신 상하, 좌우 값을 한 번에 조정할 수 있다.
+* 축약형이 존재하지 않는다. 대신 상하, 좌우 값을 한 번에 조정할 수 있습니다.
 
 ```javascript
   item: {
@@ -127,5 +130,5 @@ react에서는 map을 사용하였으면 RN에서는 FlatList를 지향한다.
   }
 ```
 
-* :first-child, :nth-child, :focus 등의 가상, 의사, 자식, 형제 선택자를 이용할 수 없다.
-* display 속성의 값이 flex와 none 두 가지 밖에 없다.
+* :first-child, :nth-child, :focus 등의 가상, 의사, 자식, 형제 선택자를 이용할 수 없습니다.
+* display 속성의 값이 flex와 none 두 가지 밖에 없습니다.

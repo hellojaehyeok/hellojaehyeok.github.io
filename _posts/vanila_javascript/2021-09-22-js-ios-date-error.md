@@ -1,6 +1,6 @@
 ---
 layout: single
-title:  "IOS Date Error "
+title:  "IOS에서 날짜가 NaN으로 나타나는 에러"
 excerpt : "IOS에서 날짜가 NaN으로 나타나는 에러"
 
 categories:
