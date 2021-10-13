@@ -1,6 +1,6 @@
 ---
 layout: single
-title:  "React Native 무한스크롤, 역무한스크롤"
+title:  "[React Native] 무한스크롤, 역무한스크롤"
 excerpt : "RN 무한스크롤, 역무한스크롤을 구해보자!"
 
 categories:
@@ -9,7 +9,7 @@ tags:
   - [React Native, Scroll]
 
 date: 2021-10-03
-last_modified_at: 2021-10-03
+last_modified_at: 2021-10-14
 ---
 
 
@@ -85,13 +85,15 @@ setTimeout 2초 후 다시 true 값을 만들어 다음번 서버 통신 이벤�
 ## 역 무한 스크롤
 역무한스크롤은 신경써야할게 조금 더 많습니다.
 
-기본 무한 스크롤과 동일하게 onScroll이벤트를 넣고 추가로 ref까지 넣어줍니다.      
-View로 한번 더 안에 들어갈 내용들을 감싸줍니다.      
+기본 무한 스크롤과 동일하게 onScroll 이벤트를 넣고 추가로 `ref`와     
+콘텐츠의 사이즈가 변할 때 실행되는 `onContentSizeChange`를 넣습니다.       
+View로 한 번 더 안에 들어갈 내용들을 감싸줍니다.      
 
 ```javascript
 <ScrollView
     onScroll={onScrollChat}
     ref={chatScrollRef}
+    onContentSizeChange={onChangeChatSize}
 >
   <View ref={chatContentRef}>
   .
@@ -106,47 +108,31 @@ View로 한번 더 안에 들어갈 내용들을 감싸줍니다.
 setTimeout을 사용한 이유는 모든게 렌더된 후에 아래로 내리고 싶었기 때문입니다.          
           
 ```javascript
-useFocusEffect(useCallback(() => {
-    setTimeout(() => {
+useEffect(() => {
+    // 스크롤을  최상단으로 올려 서버통신 후 다시 제일 아래로 가는것을 
+    //  방지하기 위해 조건문을 추가하였습니다.
+    if(chattingData.length <= 10){
         chatScrollRef.current.scrollToEnd({animated: false});
-    }, 0)   
-}, []))
+        setIsFirstRender(false);
+    }
+}, [chattingData])
 ```
 
 스크롤이 될때 일어나는 함수입니다.
 
 ```javascript
-const onScrollChat = e => {
-    if(isFirstRender){
-        setTimeout(() => {
-            setIsFirstRender(false);
-        }, 500)
-        return;
-    }
-
-    // 현재 보여지는 화면 높이 값
-    let screenHeight = e.nativeEvent.layoutMeasurement.height;
+const onScrollChat = async e => {
     // 현재 스크롤 값
     let updateScroll = e.nativeEvent.contentOffset.y;
     // 전체 문서의 높이
     let documentHeight = e.nativeEvent.contentSize.height;
 
-
     if(updateScroll == 0){
-        const addData = chatArr.concat( -- 서버통신하여 받아온 배열 -- );
-        setChatArr([...addData]);     
-
-        setTimeout(() => {
-            chatContentRef.current.measureLayout(ReactNative.findNodeHandle(chatScrollRef.current), (xPos, yPos, _width, _height) => {
-                chatScrollRef.current.scrollTo({x:0, y:_height - documentHeight, animated: false});
-            })
-        }, 100);
+        setTotalChatHeight(documentHeight);
+        // 이곳에 서버통신하는 코드를 넣습니다.
     }
 }
 ```
-
-isFirstRender 조건문을 사용한 이유는 useFocusEffect 안에서 사용한 scrollToEnd 이벤트가          
-일어났을 때에는 이벤트를 실행시키지 않기 위해서입니다.          
           
 기본 무한 스크롤과는 반대로 제일 아래로 갔을 때 서버 통신을 하는 게 아닌          
 제일 위로 갔을 때 실행시키는 것이기 때문에 updateScroll이 0이 되었을 때 이벤트를 실행합니다.          
@@ -154,30 +140,81 @@ isFirstRender 조건문을 사용한 이유는 useFocusEffect 안에서 사용�
 서버 통신하여 받아온 배열 데이터를 concat 함수로 합쳐줍니다.          
 배열이 늘어난 후에도 스크롤 값은 0으로 동일하기 때문에 이 시점에서 마지막          
 스크롤 값을 기억하여 그 위치로 이동해 주어야 합니다.          
-          
+        
 
 아래의 measureLayout, findNodeHandle를 활용해서 바뀐 데이터들의 전체 높이를 가져옵니다.          
 scrollTo를 써서 스크롤 값을 바꿔줍니다.          
 
           
-`_height - documentHeight`이 공식이 역무한스크롤의 핵심입니다.          
+`Height - totalChatHeight`이 공식이 역무한스크롤의 핵심입니다.          
 해석해보면     
 "콘텐츠 사이즈가 바뀐 후 전체 높이 값" - "콘텐츠 사이즈가 바뀌기 전 전체 높이 값" 입니다.          
-이 공식은 결국 콘텐츠가 바뀐 후 스크롤 값이 늘어나도 제자리에 있는 것처럼 보이게 됩니다.          
+이 공식은 결국 콘텐츠가 바뀐 후 스크롤 값이 늘어나도 제자리에 있는 것처럼 보이게 합니다.        
 
 ```javascript
-chatContentRef.current.measureLayout(ReactNative.findNodeHandle(chatScrollRef.current), (xPos, yPos, _width, _height) => {
-    chatScrollRef.current.scrollTo({x:0, y:_height - documentHeight, animated: false});
-})
+const onChangeChatSize = () => {
+  if(isFirstRender){setIsFirstRender(false); return}
+    chatContentRef.current.measureLayout(ReactNative.findNodeHandle(chatScrollRef.current), (xPos, yPos, Width, Height) => {
+        chatScrollRef.current.scrollTo({x:0, y:Height - totalChatHeight, animated: false});
+    })
+}
 ```
 
-onContentSizeChange로 스크롤안의 사이즈를 감지하여 스크롤값을 바꿔줘도 괜찮습니다!
+isFirstRender 조건문을 추가하는 이유는 제일 처음에는 위 코드로 스크롤 값을 조정하는게 아닌       
+scrollToEnd로 아래로 내려가야 하기 때문입니다.      
 
-<br />
 
-이 글은 추후 업데이트될 예정입니다 :)
+### 역무한스크롤 풀코드입니다.
+```javascript
+const chatScrollRef = useRef();
+const chatContentRef = useRef();
+const [isFirstRender, setIsFirstRender] = useState(true);
+const [totalChatHeight, setTotalChatHeight] = useState(0);
+.
+.
+.
+const onScrollChat = async e => {
+    // 현재 스크롤 값
+    let updateScroll = e.nativeEvent.contentOffset.y;
+    // 전체 문서의 높이
+    let documentHeight = e.nativeEvent.contentSize.height;
 
-<br />
+
+    if(updateScroll == 0){
+        setTotalChatHeight(documentHeight);
+        // 서버 통신
+    }
+}
+const onChangeChatSize = () => {
+    if(isFirstRender){setIsFirstRender(false); return}
+    chatContentRef.current.measureLayout(ReactNative.findNodeHandle(chatScrollRef.current), (xPos, yPos, Width, Height) => {
+        chatScrollRef.current.scrollTo({x:0, y:Height - totalChatHeight, animated: false});
+    })
+
+}
+useEffect(() => {
+    if(chattingData.length <= 10){
+        chatScrollRef.current.scrollToEnd({animated: false});
+        setIsFirstRender(false);
+    }
+}, [chattingData])
+.
+.
+.
+return(
+  <ScrollView
+    onScroll={onScrollChat}
+    ref={chatScrollRef}
+    onContentSizeChange={onChangeChatSize}
+  >
+    <View ref={chatContentRef}>
+    .
+    .
+    .
+    </View>
+  </ScrollView>
+)
+```
 
 
 ```

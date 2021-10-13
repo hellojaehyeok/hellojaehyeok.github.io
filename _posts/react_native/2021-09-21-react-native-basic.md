@@ -1,6 +1,6 @@
 ---
 layout: single
-title:  "React Native 기초정리"
+title:  "[React Native] 기초정리"
 excerpt : "React Native 기초정리"
 
 categories:
