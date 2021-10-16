@@ -31,6 +31,10 @@
   }
 }
 
+.archive_link{
+  font-size: 0.9em;
+}
+
 .archive__subtitle {
   margin: 1.414em 0 0.5em;
   padding-bottom: 0.5em;
@@ -125,7 +129,7 @@
    ========================================================================== */
 
 .list__item {
-  margin-top: 30px;
+  margin-top: 10px;
   .page__meta {
     margin: 0 0 4px;
     font-size: 0.6em;

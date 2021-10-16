@@ -1,11 +1,11 @@
 ---
 layout: single
-title:  "formData 사용시 Json parse error:Unexpeced ... 에러 해결"
+title:  "[Error]formData 사용시 Json parse error:Unexpeced ..."
 
 categories:
   - Vanila Javascript
 tags: 
-  - [Vanila Javascript, ES6]
+  - [Vanila Javascript, Error]
 
 date: 2021-10-10
 last_modified_at: 2021-10-10
