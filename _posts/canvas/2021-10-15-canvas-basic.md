@@ -1,6 +1,6 @@
 ---
 layout: single
-title:  "Canvas 기초 정리"
+title:  "Canvas n각형 그리기"
 
 categories:
   - Canvas

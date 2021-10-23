@@ -7,8 +7,8 @@ categories:
 tags: 
   - [React Native, Error]
 
-date: 2021-10-16
-last_modified_at: 2021-10-16
+date: 2021-10-23
+last_modified_at: 2021-10-23
 ---
 
 

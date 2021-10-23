@@ -43,6 +43,13 @@
                 {% endfor %}
             </ul>
 
+        {% for category in site.categories %}
+            {% if category[0] == "etc" %}
+                <a class="nav__sub-title" href="/categories/etc" style="cursor:pointer">etc. ({{category[1].size}})</a>
+            {% endif %}
+        {% endfor %}
+
+        <a class="nav__sub-title" style="cursor:pointer">개발일지</a>
       </li>
   </ul>
 </nav>
