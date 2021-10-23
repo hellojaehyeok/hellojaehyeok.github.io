@@ -1,6 +1,6 @@
 ---
 layout: single
-title:  "[Error]formData 사용시 Json parse error:Unexpeced ..."
+title:  "[Error]formData 사용시 Json parse error:Unexpeced"
 
 categories:
   - Vanila Javascript
