@@ -49,6 +49,12 @@
             {% endif %}
         {% endfor %}
 
+        {% for category in site.categories %}
+            {% if category[0] == "web" %}
+                <a class="nav__sub-title" href="/categories/web" style="cursor:pointer">web ({{category[1].size}})</a>
+            {% endif %}
+        {% endfor %}
+
         <a class="nav__sub-title" style="cursor:pointer">개발일지</a>
       </li>
   </ul>

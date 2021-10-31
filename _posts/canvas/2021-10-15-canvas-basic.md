@@ -17,7 +17,7 @@ last_modified_at: 2021-10-15
 canvas 공부 시작할려고합니다!
 
 ## 기본 세팅
-canvas는 기본적으로 `<canvas></canvas>`태그안에서 이루어집니다.
+canvas는 기본적으로 `<canvas></canvas>`태그안에서 이루어집니다.       
 getElementById로 해당 태그를 가져오고 2d설정과 width, height 설정을 해줍니다.
 ```javascript
 window.onload = function(){
@@ -37,15 +37,15 @@ window.onload = function(){
 ## n각형 그리기
 
 #### fillRect(x, y, width, height)
-색칠된 직사각형을 그립니다.
+채워진 직사각형을 그립니다.
 
 #### strokeRect(x, y, width, height)
-색칠된 직사각형을 그립니다.
+선으로만 이루어진 직사각형을 그립니다.
 
 ### arc(x, y, radius, startAngle, endAngle, anticlockwise)
 (x, y) 위치가 원점이고, 반지름 r을 가지고,        
-startAngle 에서 시작하여 endAngle 에서 끝나며 주어진       
-anticlockwise 방향으로 향하는 (기본값은 시계방향 회전) 호를 그리게 된다.        
+startAngle 에서 시작하여 endAngle 에서 끝나며 주어진,       
+anticlockwise(bool) 방향으로 향하는 (기본값은 시계방향 회전) 호를 그리게 된다.        
 
 Angle은 라디안 기법을 사용합니다.       
 아래 코드를 사용하여 원하는 각도를 변수로 넣는다.        
@@ -56,10 +56,6 @@ const radianDeg = (deg) => {
 }
 ```
 
-
----
-
-업데이트될 글입니다!!
 
 
 ```
