@@ -1,6 +1,27 @@
-function three() {
+async function loadWebGL() {
+  // setting
+  const { scene, textureCube } = initScene();
+  const camera = initCamera();
+  const renderer = initRenderer();
+  new THREE.OrbitControls(camera, renderer.domElement);
+  initLight(scene);
+  const composer = initEffect(scene, camera, renderer);
+
+  // obj
+  const rose = await loadRose(scene, textureCube);
+
+  // animation
+  (function renderScene() {
+    requestAnimationFrame(renderScene);
+    rose.rotation.y += 0.008;
+    composer.render();
+  })();
+}
+loadWebGL();
+
+function initScene() {
   const scene = new THREE.Scene();
-  let url = [
+  let backgroundSrc = [
     "./img/bg/4.jpg",
     "./img/bg/1.jpg", // 1
     "./img/bg/5.jpg", // sky 5
@@ -8,63 +29,80 @@ function three() {
     "./img/bg/6.jpg",
     "./img/bg/3.jpg", // 3
   ];
-  let loader2 = new THREE.CubeTextureLoader();
-  scene.background = loader2.load(url);
+  const backgroundLoader = new THREE.CubeTextureLoader();
+  scene.background = backgroundLoader.load(backgroundSrc);
 
-  var camera = new THREE.PerspectiveCamera(
+  const textureCube = new THREE.CubeTextureLoader().load(backgroundSrc);
+  textureCube.mapping = THREE.CubeRefractionMapping;
+
+  return { scene, textureCube };
+}
+
+function initCamera() {
+  const windowWidth = window.innerWidth;
+  const windowHeight = window.innerHeight;
+  const camera = new THREE.PerspectiveCamera(
     75,
-    window.innerWidth / window.innerHeight,
+    windowWidth / windowHeight,
     0.1,
     1000
   );
-  var renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-  document.getElementById("rose").appendChild(renderer.domElement);
-  control = new THREE.OrbitControls(camera, renderer.domElement);
+  camera.position.set(2, 10, -130);
+  camera.lookAt(0, 0, 0);
+  return camera;
+}
 
-  //SIZE ---------
-  renderer.setSize(window.innerWidth, window.innerHeight);
+function initRenderer() {
+  const windowWidth = window.innerWidth;
+  const windowHeight = window.innerHeight;
+  let renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+  document.getElementById("rose").appendChild(renderer.domElement);
+  renderer.setSize(windowWidth, windowHeight);
   window.addEventListener("resize", function () {
-    var width = window.innerWidth;
-    var height = window.innerHeight;
+    let width = windowWidth;
+    let height = windowHeight;
     renderer.setSize(width, height);
   });
   renderer.setClearColor(0x000000, 1);
   renderer.setPixelRatio(window.devicePixelRatio);
+  return renderer;
+}
 
-  camera.position.set(2, 10, -130);
-  camera.lookAt(0, 0, 0);
-
-  const textureCube = new THREE.CubeTextureLoader().load(url);
-  textureCube.mapping = THREE.CubeRefractionMapping;
-
+function initLight(scene) {
   const ambient = new THREE.AmbientLight(0xffffff);
+  const pointLight = new THREE.PointLight(0xffffff, 10);
+
   scene.add(ambient);
-
-  pointLight = new THREE.PointLight(0xffffff, 10);
   scene.add(pointLight);
+}
 
-  var main = new THREE.Object3D();
-  var loader = new THREE.OBJLoader();
-  loader.load("./obj/rose.obj", function (object) {
-    const materialObj = new THREE.MeshPhongMaterial({
-      color: 0xccddff,
-      envMap: textureCube,
-      refractionRatio: 0.98,
-    });
-    object.traverse(function (child) {
-      if (child instanceof THREE.Mesh) {
-        child.material = materialObj;
-      }
-    });
+async function loadRose(scene, envMap) {
+  let object3d = new THREE.Object3D();
+  await new Promise((resolve) => {
+    new THREE.OBJLoader().load("./obj/rose.obj", function (object) {
+      const materialObj = new THREE.MeshPhongMaterial({
+        color: 0xccddff,
+        envMap,
+        refractionRatio: 0.98,
+      });
+      object.traverse(function (child) {
+        if (child instanceof THREE.Mesh) {
+          child.material = materialObj;
+        }
+      });
 
-    object.position.set(1, -20, 1);
-    object.scale.set(1, 1, 1);
-    main = object;
-    scene.add(main);
+      object.position.set(1, -20, 1);
+      object.scale.set(1, 1, 1);
+      object3d = object;
+      scene.add(object3d);
+      resolve();
+    });
   });
+  return object3d;
+}
 
-  let composer;
-  composer = new POSTPROCESSING.EffectComposer(renderer);
+function initEffect(scene, camera, renderer) {
+  const composer = new POSTPROCESSING.EffectComposer(renderer);
   composer.addPass(new POSTPROCESSING.RenderPass(scene, camera));
 
   const effectPass = new POSTPROCESSING.EffectPass(
@@ -73,11 +111,5 @@ function three() {
   );
   effectPass.renderToScreen = true;
   composer.addPass(effectPass);
-
-  const renderScene = new (function renderScene() {
-    requestAnimationFrame(renderScene);
-    main.rotation.y += 0.008;
-    composer.render();
-  })();
+  return composer;
 }
-three();
