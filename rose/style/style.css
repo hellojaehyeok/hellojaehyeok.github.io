@@ -1,5 +1,5 @@
-
-
-body{overflow: hidden;}
-
-div.christmas{z-index: 99;}
+body {
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
