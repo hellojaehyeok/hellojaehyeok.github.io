@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "noImplicitReturns": true, // 제대로 리턴이 안되면 오류
+    "noUnusedParameters": true, // 매개변수가 사용되지 않으면 오류
+    "noUnusedLocals": true, // 로컬 변수가 사용되지 않으면 오류
+    "removeComments": false, // 주석 제거
+    "strict": true, // 엄격한 타입 검사
+    "downlevelIteration": true, // js의 하위 버전도 지원 가능하게
+    "jsx": "preserve", // ts컴파일러가 jsx 문법을 어떻게 처리할지 정한다.
+    "baseUrl": "/"
+  },
+  "include": ["**/*.tsx", "**/*.ts"]
+}
