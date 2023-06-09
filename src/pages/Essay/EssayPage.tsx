@@ -1,6 +1,6 @@
+import Contents from 'components/Contents';
 import fs from 'fs';
 import matter from 'gray-matter';
-import md from 'markdown-it';
 
 const EssayPage = ({ frontmatter, content }: { frontmatter: any; content: any }) => {
   const { title } = frontmatter;
@@ -8,7 +8,7 @@ const EssayPage = ({ frontmatter, content }: { frontmatter: any; content: any })
   return (
     <div>
       <div>{title}</div>
-      <div dangerouslySetInnerHTML={{ __html: md().render(content) }} />
+      <Contents content={content} />
     </div>
   );
 };
