@@ -1,7 +1,14 @@
-.post-contents {
-  font-family: 'Noto Sans KR';
-  width: 700px;
+import styled from '@emotion/styled';
+import md from 'markdown-it';
 
+const Contents = ({ content }: { content: any }) => {
+  return <Layout dangerouslySetInnerHTML={{ __html: md().render(content) }} />;
+};
+
+export default Contents;
+
+const Layout = styled.div`
+  width: 700px;
   h3 {
     margin-bottom: 20px;
     font-size: 20px;
@@ -24,4 +31,4 @@
     height: 1px;
     border: 0;
   }
-}
+`;
