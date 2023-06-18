@@ -11,12 +11,7 @@ jobs:
       - name: List files in the repository
         run: |
           ls ${{ github.workspace }}
+      - run: node -v
+      - run: yarn install
+      - run: yarn build
       - run: echo "🍏 This job's status is ${{ job.status }}."
-      - name: yarn install
-        run: yarn install
-      - name: list github.workspace
-        run: ls ${{ github.workspace }}
-      - name: list all
-        run: ls -a
-      - name: yarn build after yarn install
-        run: yarn build
