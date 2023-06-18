@@ -12,8 +12,6 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
-      - name: yarn build before yarn install
-        run: yarn build
       - name: yarn install
         run: yarn install
       - name: list github.workspace
