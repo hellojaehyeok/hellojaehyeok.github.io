@@ -13,5 +13,7 @@ jobs:
           ls ${{ github.workspace }}
       - run: node -v
       - run: yarn install
+      - run: npm ls @types/react
+      - run: npm ls @types/react-dom
       - run: yarn build
       - run: echo "🍏 This job's status is ${{ job.status }}."
