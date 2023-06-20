@@ -10,7 +10,7 @@ on:
     branches:
       - main
 jobs:
-  deploy github pages:
+  deploy_github_pages:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
