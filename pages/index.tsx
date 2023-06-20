@@ -1,3 +1,3 @@
 export default function Home() {
-  return <>main test</>;
+  return <>main merged test</>;
 }
