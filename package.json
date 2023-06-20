@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "export": "next export",
     "deploy": "next build && next export && cd out && echo 'azisong.com' > CNAME && touch .nojekyll && cd ../ && git add -f out/ && git commit --reuse-message=HEAD && git push origin $(git subtree split --prefix out main):gh-pages --force && git reset --hard HEAD~1"
   },
   "dependencies": {
