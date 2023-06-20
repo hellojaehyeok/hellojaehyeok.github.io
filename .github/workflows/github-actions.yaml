@@ -1,9 +1,17 @@
 name: GitHub Actions
-run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
-on: push
+run-name: Deploy github actions 🚀
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types:
+      - merged
+    branches:
+      - main
 jobs:
-  test-actions:
-    # if: ${{ github.ref == 'refs/heads/main' }}
+  deploy github pages:
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
       - name: Check out ${{ github.repository }} repository
@@ -13,9 +21,9 @@ jobs:
       - run: yarn export
       - name: setting for deploy
         run: cd out && echo 'azisong.com' > CNAME && touch .nojekyll
-      - name: deploy
+      - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
           folder: out
-      - run: echo "🍏 This job's status is ${{ job.status }}."
+      - run: echo "This job's status is ${{ job.status }}."
