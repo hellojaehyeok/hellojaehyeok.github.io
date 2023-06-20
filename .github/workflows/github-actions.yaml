@@ -12,11 +12,10 @@ jobs:
       - run: yarn build
       - run: yarn export
       - name: setting for deploy
-        run: |
-        cd out && echo 'azisong.com' > CNAME && touch .nojekyll
+        run: cd out && echo 'azisong.com' > CNAME && touch .nojekyll
       - name: deploy
         uses: JamesIves/github-pages-deploy-action@v4
-        with: 
+        with:
           branch: gh-pages
           folder: out
       - run: echo "🍏 This job's status is ${{ job.status }}."
