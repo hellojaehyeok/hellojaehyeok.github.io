@@ -1,3 +1,3 @@
 export default function Home() {
-  return <>actions test</>;
+  return <>actions test 2</>;
 }
