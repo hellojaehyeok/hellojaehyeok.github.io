@@ -1,8 +1,20 @@
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { duotoneLight } from 'react-syntax-highlighter/dist/cjs/styles/prism';
+import ReactMarkdown from 'react-markdown';
 import styled from '@emotion/styled';
-import md from 'markdown-it';
 
-const Contents = ({ content }: { content: any }) => {
-  return <Layout dangerouslySetInnerHTML={{ __html: md().render(content) }} />;
+const Contents = ({ content }: { content: string }) => {
+  return (
+    <Layout>
+      <ReactMarkdown
+        components={{
+          code: CodeBlock,
+        }}
+      >
+        {content}
+      </ReactMarkdown>
+    </Layout>
+  );
 };
 
 export default Contents;
@@ -32,3 +44,12 @@ const Layout = styled.div`
     border: 0;
   }
 `;
+
+// NOTE: children의 string[]이지만, ReactMarkdown 타입 에러로 인하여 any를 사용
+const CodeBlock = ({ children, className }: { children: any[]; className?: string }) => {
+  return (
+    <SyntaxHighlighter language={className?.replace('language-', '')} style={duotoneLight}>
+      {children}
+    </SyntaxHighlighter>
+  );
+};
