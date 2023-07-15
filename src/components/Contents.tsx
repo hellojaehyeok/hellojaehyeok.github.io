@@ -3,16 +3,20 @@ import { duotoneLight } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import ReactMarkdown from 'react-markdown';
 import styled from '@emotion/styled';
 
-const Contents = ({ content }: { content: string }) => {
+const Contents = ({ title, date, content }: { title: string; date: string; content: string }) => {
   return (
     <Layout>
-      <ReactMarkdown
-        components={{
-          code: CodeBlock,
-        }}
-      >
-        {content}
-      </ReactMarkdown>
+      <Title>{title}</Title>
+      <CreateDate>{date}</CreateDate>
+      <Body>
+        <ReactMarkdown
+          components={{
+            code: CodeBlock,
+          }}
+        >
+          {content}
+        </ReactMarkdown>
+      </Body>
     </Layout>
   );
 };
@@ -20,21 +24,37 @@ const Contents = ({ content }: { content: string }) => {
 export default Contents;
 
 const Layout = styled.div`
-  width: 700px;
-  h3 {
-    margin-bottom: 20px;
-    font-size: 20px;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 120px 0;
+`;
+const Title = styled.h1`
+  font-weight: 400;
+  font-size: 20px;
+  margin-bottom: 10px;
+`;
+const CreateDate = styled.div`
+  margin-bottom: 40px;
+  font-weight: 300;
+  font-size: 16px;
+  color: #8a8a8a;
+`;
+const Body = styled.div`
+  width: 100%;
+  line-height: 1.8;
+  h2 {
+    margin-bottom: 10px;
+    font-weight: 400;
+    font-size: 18px;
   }
-  p,
-  ul {
-    font-weight: 100;
-    margin-bottom: 15px;
+  strong {
+    font-weight: 500;
   }
   li {
-    list-style: disc;
-    margin: 0 0 10px 40px;
+    list-style: circle;
+    margin: 5px 0 5px 30px;
     ul {
-      margin: 10px 0 0 0;
+      margin: 5px 0 0 0;
     }
   }
   hr {
