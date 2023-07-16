@@ -3,14 +3,9 @@ import fs from 'fs';
 import matter from 'gray-matter';
 
 const EssayPage = ({ frontmatter, content }: { frontmatter: any; content: any }) => {
-  const { title } = frontmatter;
+  const { title, date } = frontmatter;
 
-  return (
-    <div>
-      <div>{title}</div>
-      <Contents content={content} />
-    </div>
-  );
+  return <Contents title={title} date={date} content={content} />;
 };
 
 export default EssayPage;

@@ -1,28 +1,62 @@
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { duotoneLight } from 'react-syntax-highlighter/dist/cjs/styles/prism';
+import ReactMarkdown from 'react-markdown';
 import styled from '@emotion/styled';
-import md from 'markdown-it';
 
-const Contents = ({ content }: { content: any }) => {
-  return <Layout dangerouslySetInnerHTML={{ __html: md().render(content) }} />;
+const Contents = ({ title, date, content }: { title: string; date: string; content: string }) => {
+  return (
+    <Layout>
+      <Title>{title}</Title>
+      <CreateDate>{date}</CreateDate>
+      <Body>
+        <ReactMarkdown
+          components={{
+            code: CodeBlock,
+          }}
+        >
+          {content}
+        </ReactMarkdown>
+      </Body>
+    </Layout>
+  );
 };
 
 export default Contents;
 
 const Layout = styled.div`
-  width: 700px;
-  h3 {
-    margin-bottom: 20px;
-    font-size: 20px;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 120px 0;
+`;
+const Title = styled.h1`
+  font-weight: 400;
+  font-size: 16px;
+  margin-bottom: 10px;
+`;
+const CreateDate = styled.div`
+  margin-bottom: 40px;
+  font-weight: 300;
+  font-size: 14px;
+  color: #8a8a8a;
+`;
+const Body = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  line-height: 28px;
+  gap: 20px;
+  h2 {
+    font-weight: 400;
+    font-size: 16px;
   }
-  p,
-  ul {
-    font-weight: 100;
-    margin-bottom: 15px;
+  strong {
+    font-weight: 400;
   }
   li {
-    list-style: disc;
-    margin: 0 0 10px 40px;
+    list-style: circle;
+    margin: 5px 0 5px 30px;
     ul {
-      margin: 10px 0 0 0;
+      margin: 5px 0 0 0;
     }
   }
   hr {
@@ -31,4 +65,17 @@ const Layout = styled.div`
     height: 1px;
     border: 0;
   }
+  pre > pre {
+    border-radius: 13px;
+    border: 1px solid #e4e2e0;
+  }
 `;
+
+// NOTE: children의 string[]이지만, ReactMarkdown 타입 에러로 인하여 any를 사용
+const CodeBlock = ({ children, className }: { children: any[]; className?: string }) => {
+  return (
+    <SyntaxHighlighter language={className?.replace('language-', '')} style={duotoneLight}>
+      {children}
+    </SyntaxHighlighter>
+  );
+};
