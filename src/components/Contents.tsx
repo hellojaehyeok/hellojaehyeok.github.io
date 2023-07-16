@@ -30,25 +30,27 @@ const Layout = styled.div`
 `;
 const Title = styled.h1`
   font-weight: 400;
-  font-size: 20px;
+  font-size: 16px;
   margin-bottom: 10px;
 `;
 const CreateDate = styled.div`
   margin-bottom: 40px;
   font-weight: 300;
-  font-size: 16px;
+  font-size: 14px;
   color: #8a8a8a;
 `;
 const Body = styled.div`
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  line-height: 1.8;
+  line-height: 28px;
+  gap: 20px;
   h2 {
-    margin-bottom: 10px;
     font-weight: 400;
-    font-size: 18px;
+    font-size: 16px;
   }
   strong {
-    font-weight: 500;
+    font-weight: 400;
   }
   li {
     list-style: circle;
@@ -62,6 +64,10 @@ const Body = styled.div`
     background-color: rgb(209, 209, 209);
     height: 1px;
     border: 0;
+  }
+  pre > pre {
+    border-radius: 13px;
+    border: 1px solid #e4e2e0;
   }
 `;
 
