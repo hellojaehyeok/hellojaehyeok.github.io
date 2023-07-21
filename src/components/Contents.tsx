@@ -49,6 +49,10 @@ const Body = styled.div`
     font-weight: 400;
     font-size: 16px;
   }
+  h3 {
+    font-weight: 400;
+    font-size: 16px;
+  }
   strong {
     font-weight: 400;
   }
