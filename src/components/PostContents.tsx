@@ -3,7 +3,7 @@ import { duotoneLight } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import ReactMarkdown from 'react-markdown';
 import styled from '@emotion/styled';
 
-const Contents = ({ title, date, content }: { title: string; date: string; content: string }) => {
+const PostContents = ({ title, date, content }: { title: string; date: string; content: string }) => {
   return (
     <Layout>
       <Title>{title}</Title>
@@ -12,6 +12,7 @@ const Contents = ({ title, date, content }: { title: string; date: string; conte
         <ReactMarkdown
           components={{
             code: CodeBlock,
+            p: props => <div {...props} />,
           }}
         >
           {content}
@@ -21,7 +22,7 @@ const Contents = ({ title, date, content }: { title: string; date: string; conte
   );
 };
 
-export default Contents;
+export default PostContents;
 
 const Layout = styled.div`
   max-width: 720px;
@@ -73,10 +74,23 @@ const Body = styled.div`
     border-radius: 13px;
     border: 1px solid #e4e2e0;
   }
+  .code-in-paragrahs {
+    background: #faf8f5;
+    padding: 3px 5px;
+    border-radius: 5px;
+    border: 1px solid #e4e2e0;
+  }
+  a {
+    color: #747474;
+    text-decoration: none;
+    border-bottom: 0.1px solid #747474;
+    padding-bottom: 0.1px;
+  }
 `;
 
 // NOTE: children의 string[]이지만, ReactMarkdown 타입 에러로 인하여 any를 사용
 const CodeBlock = ({ children, className }: { children: any[]; className?: string }) => {
+  if (className == null) return <span className="code-in-paragrahs">{children}</span>;
   return (
     <SyntaxHighlighter language={className?.replace('language-', '')} style={duotoneLight}>
       {children}
