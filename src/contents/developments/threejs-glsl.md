@@ -3,6 +3,8 @@ title: 'Nextjs & Threejs & GLSL를 시작하며 WIP'
 date: '2023-08-06'
 ---
 
+github deploy test
+
 대학생 시절 나는 [awwwards](https://www.awwwards.com/)를 보며 화려한 인터랙션에 빠졌고, 그 중 Threejs, GLSL로 만든 웹사이트를 보며 이게 Javascript로 만들 수 있는 효과들인지 생각하곤 했다. 직접 만들어보고 싶었지만 Javascript로 겨우 Dom을 조작하는게 전부였던 나에게는 역시 무리였다. 졸업을 하고 첫 회사를 다닐때쯤 우연히 [유튜브 영상](https://www.youtube.com/watch?v=DdQn82X1G3I&list=WL&index=26) 하나가 눈에 들어왔다. 그 영상은 평소 해보고싶었던 인터랙션 중 하나였기에 들뜬 마음으로 보았지만 이해가 가지 않았다. 마음 한켠에 언젠가 꼭 만들고 싶다는 다짐을 하고 시간은 그렇게 2년이 지났다. 영상을 최근에서야 다시 보았는데 지금 보니 조금만 공부한다면 그리 어려울 것 같지는 않았다. 더 이상 미룰 수 없다. 항상 마음의 짐이였던 GLSL. 이제는 직접 만들어보자.
 
 ## Step . 0
