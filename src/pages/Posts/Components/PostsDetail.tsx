@@ -2,6 +2,7 @@ import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { duotoneLight } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import ReactMarkdown from 'react-markdown';
 import styled from '@emotion/styled';
+import { colors } from 'styles/colors';
 
 const PostsDetail = ({ title, date, content }: { title: string; date: string; content: string }) => {
   return (
@@ -33,12 +34,13 @@ const Title = styled.h1`
   font-weight: 400;
   font-size: 16px;
   margin-bottom: 10px;
+  color: ${colors.gray700};
 `;
 const CreateDate = styled.div`
   margin-bottom: 40px;
   font-weight: 300;
   font-size: 14px;
-  color: #8a8a8a;
+  color: ${colors.gray300};
 `;
 const Body = styled.div`
   display: flex;
@@ -66,24 +68,24 @@ const Body = styled.div`
   }
   hr {
     margin: 50px 0;
-    background-color: rgb(209, 209, 209);
+    background-color: ${colors.gray50};
     height: 1px;
     border: 0;
   }
   pre > pre {
     border-radius: 13px;
-    border: 1px solid #e4e2e0;
+    border: 1px solid ${colors.codeBlockBorder};
   }
   .code-in-paragrahs {
-    background: #faf8f5;
+    background: ${colors.codeBlockBackground};
     padding: 3px 5px;
     border-radius: 5px;
-    border: 1px solid #e4e2e0;
+    border: 1px solid ${colors.codeBlockBorder};
   }
   a {
-    color: #747474;
+    color: ${colors.gray400};
     text-decoration: none;
-    border-bottom: 0.1px solid #747474;
+    border-bottom: 0.1px solid ${colors.gray400};
     padding-bottom: 0.1px;
   }
 `;
