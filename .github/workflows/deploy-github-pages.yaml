@@ -15,8 +15,8 @@ jobs:
     steps:
       - name: Check out ${{ github.repository }} repository
         uses: actions/checkout@v3
-      - run: yarn typecheck
       - run: yarn install
+      - run: yarn typecheck
       - run: yarn build
       - run: yarn export
       - name: setting for deploy
