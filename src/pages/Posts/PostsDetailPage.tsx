@@ -1,14 +1,15 @@
-import Contents from 'components/PostContents';
+import PostsDetail from 'pages/Posts/Components/PostsDetail';
 import fs from 'fs';
 import matter from 'gray-matter';
+import { removeMdExtension } from 'utils/removeMdExtension';
 
-const Posts = ({ frontmatter, content }: { frontmatter: any; content: any }) => {
+const PostsDetailPage = ({ frontmatter, content }: { frontmatter: any; content: any }) => {
   const { title, date } = frontmatter;
 
-  return <Contents title={title} date={date} content={content} />;
+  return <PostsDetail title={title} date={date} content={content} />;
 };
 
-export default Posts;
+export default PostsDetailPage;
 
 export async function getStaticPaths() {
   const category = fs.readdirSync('./src/contents');
@@ -16,7 +17,7 @@ export async function getStaticPaths() {
     const slugs = fs.readdirSync(`./src/contents/${_category}`);
     return slugs.map(slug => ({
       category: _category,
-      slug: slug.replace('.md', ''),
+      slug: removeMdExtension(slug),
     }));
   });
 
