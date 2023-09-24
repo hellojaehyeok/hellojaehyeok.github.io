@@ -1,1 +1,1 @@
-export { default, getStaticProps } from 'pages/Posts/PostsPage';
+export { default, getStaticProps } from 'pages/Posts/PostsListPage';
