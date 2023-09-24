@@ -19,7 +19,7 @@ const PostsListPage = ({ posts }: { posts: Post[] }) => {
   return (
     <PostsListWrap>
       {ascendingPosts.map(post => (
-        <PostsListRow key={post.path} onClick={({ path }) => Router.push(post.path)} post={post} />
+        <PostsListRow key={post.path} onClick={({ path }) => Router.push(path)} post={post} />
       ))}
     </PostsListWrap>
   );
