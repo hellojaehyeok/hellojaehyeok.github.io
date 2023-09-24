@@ -3,7 +3,7 @@ import { duotoneLight } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import ReactMarkdown from 'react-markdown';
 import styled from '@emotion/styled';
 
-const PostContents = ({ title, date, content }: { title: string; date: string; content: string }) => {
+const PostsDetail = ({ title, date, content }: { title: string; date: string; content: string }) => {
   return (
     <Layout>
       <Title>{title}</Title>
@@ -22,7 +22,7 @@ const PostContents = ({ title, date, content }: { title: string; date: string; c
   );
 };
 
-export default PostContents;
+export default PostsDetail;
 
 const Layout = styled.div`
   max-width: 720px;

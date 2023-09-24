@@ -1,1 +1,1 @@
-export { default, getStaticProps, getStaticPaths } from 'pages/Posts/SlugPage';
+export { default, getStaticProps, getStaticPaths } from 'pages/Posts/PostsDetailPage';
