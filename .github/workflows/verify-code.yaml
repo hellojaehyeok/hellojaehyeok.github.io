@@ -1,0 +1,12 @@
+name: Verify Code
+run-name: Verify Code
+on: push
+jobs:
+  typecheck:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out ${{ github.repository }} repository
+        uses: actions/checkout@v3
+      - run: yarn install
+      - run: yarn typecheck
+      - run: echo "This job's status is ${{ job.status }}."
