@@ -1,5 +1,5 @@
 ---
-title: 'GLSL을 시작하며'
+title: 'Glitch scroll effect를 만들어보자'
 date: '2023-08-06'
 ---
 
