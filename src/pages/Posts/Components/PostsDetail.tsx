@@ -48,6 +48,9 @@ const Body = styled.div`
   width: 100%;
   line-height: 28px;
   gap: 20px;
+  img {
+    width: 100%;
+  }
   h2 {
     font-weight: 400;
     font-size: 16px;
